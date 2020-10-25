@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: magazines
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+  labels:
+    app: swir
+    swir: magazines
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: swir
+  template:
+    metadata:
+      labels:
+        app: swir
+    spec:
+      containers:
+      - name: client
+        image: swir/swir-example-si-python-http-server:v0.3.2
+        env:
+          - name: port
+            value: "8090"
+          - name: ip
+            value: 127.0.0.1
