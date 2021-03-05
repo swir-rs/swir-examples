@@ -13,7 +13,7 @@ services:
   swir:
     networks:
       - swir-net
-    image: swir/swir:v0.3.2
+    image: swir/swir:v0.4.0
     ports:
       - "8080:8080"
       - "8443:8443"

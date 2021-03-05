@@ -34,7 +34,7 @@ services:
   order-generator-sidecar:
     networks:
       - swir-net
-    image: swir/swir:v0.3.2
+    image: swir/swir:v0.4.0
     depends_on:
       - swir-example-configurator
       - swir-example-logger
@@ -54,7 +54,7 @@ services:
   order-processor-sidecar:
     networks:
       - swir-net
-    image: swir/swir:v0.3.2
+    image: swir/swir:v0.4.0
     depends_on:
       - swir-example-configurator
       - swir-example-logger      
@@ -74,7 +74,7 @@ services:
   inventory-processor-sidecar:
     networks:
       - swir-net
-    image: swir/swir:v0.3.2
+    image: swir/swir:v0.4.0
     depends_on:
       - swir-example-configurator
       - swir-example-logger      
@@ -95,7 +95,7 @@ services:
   billing-processor-sidecar:
     networks:
       - swir-net
-    image: swir/swir:v0.3.2
+    image: swir/swir:v0.4.0
     depends_on:
       - swir-example-configurator
       - swir-example-logger      
@@ -117,7 +117,7 @@ services:
   shipments-sink-sidecar:
     networks:
       - swir-net
-    image: swir/swir:v0.3.2
+    image: swir/swir:v0.4.0
     depends_on:
       - swir-example-configurator
       - swir-example-logger
