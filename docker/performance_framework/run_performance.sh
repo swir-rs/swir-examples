@@ -2,13 +2,13 @@
 cwd=$(pwd)
 
 cd swir-configurator
-docker build --tag swir/swir-perf-configurator:v0.3.2 .
+docker build --tag swir/swir-perf-configurator:v0.4.0 .
 cd ../swir-java-client
-docker build --tag swir/swir-perf-java-client:v0.3.2 .
+docker build --tag swir/swir-perf-java-client:v0.4.0 .
 cd ../swir-kafka-sink
-docker build --tag swir/swir-perf-kafka-sink:v0.3.2 .
+docker build --tag swir/swir-perf-kafka-sink:v0.4.0 .
 cd ../swir-nats-sink
-docker build --tag swir/swir-perf-nats-sink:v0.3.2 .
+docker build --tag swir/swir-perf-nats-sink:v0.4.0 .
 cd ..
 
 #docker-compose -f docker-compose-infr.yaml -p docker down --remove-orphans
@@ -40,13 +40,13 @@ docker-compose  -f docker-compose-swir.yaml -p pf up -d
 
 
 #Kafka test over gRPC
-#docker run -ti --network docker_swir-net  --rm -e sidecar_hostname=swir -e sidecar_port=50051 -e messages=100000 -e threads=10 -e client_request_topic=ProduceToAppA -e client_response_topic=SubscribeToAppA -e publish_type=[unary|bidi] swir-grpc-client:v0.3.2
+#docker run -ti --network docker_swir-net  --rm -e sidecar_hostname=swir -e sidecar_port=50051 -e messages=100000 -e threads=10 -e client_request_topic=ProduceToAppA -e client_response_topic=SubscribeToAppA -e publish_type=[unary|bidi] swir-grpc-client:v0.4.0
 
 #Nats test over gRPC
-#docker run -ti --network docker_swir-net  --rm -e sidecar_hostname=swir -e sidecar_port=50051 -e messages=100000 -e threads=10 -e client_request_topic=ProduceToAppB -e client_response_topic=SubscribeToAppB -e publish_type=[unary|bidi] swir-grpc-client:v0.3.2
+#docker run -ti --network docker_swir-net  --rm -e sidecar_hostname=swir -e sidecar_port=50051 -e messages=100000 -e threads=10 -e client_request_topic=ProduceToAppB -e client_response_topic=SubscribeToAppB -e publish_type=[unary|bidi] swir-grpc-client:v0.4.0
 
 #gRPC to gRPC
-#docker run -ti --network docker_swir-net  --rm -e sidecar_hostname=swir-grpc-sink -e sidecar_port=50052 -e messages=1000000 -e threads=200 -e client_request_topic=ProduceToAppA -e client_response_topic=SubscribeToAppA  swir-grpc-client:v0.3.2
+#docker run -ti --network docker_swir-net  --rm -e sidecar_hostname=swir-grpc-sink -e sidecar_port=50052 -e messages=1000000 -e threads=200 -e client_request_topic=ProduceToAppA -e client_response_topic=SubscribeToAppA  swir-grpc-client:v0.4.0
 
 #Kafka to Kafka
 #docker run --network docker_swir-net -it --rm curlimages/curl -v -d '{"messages":1000000, "threads":200, "sidecarUrl":"http://pf_swir_1:8080","clientTopic":"ProduceToAppA","testType":"kafka","missedPackets":50}' -H "Content-Type: application/json" -X POST http://pf_swir-java-client_1:8090/test

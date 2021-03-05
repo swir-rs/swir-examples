@@ -3,7 +3,7 @@ services:
   swir-configurator:
     networks:
       - swir-net
-    image: swir/swir-perf-configurator:v0.3.2
+    image: swir/swir-perf-configurator:v0.4.0
     command: ["/bin/bash","-c","cp /config/* swir_config/"]
     volumes:
       - type: volume
@@ -28,7 +28,7 @@ services:
   swir-kafka-sink1:
     networks:
       - swir-net
-    image: swir/swir-perf-kafka-sink:v0.3.2
+    image: swir/swir-perf-kafka-sink:v0.4.0
     environment:
       - bootstrap_servers=kafka:9094
       - sink_consumer_topic=Request
@@ -40,7 +40,7 @@ services:
   swir-kafka-sink2:
     networks:
       - swir-net
-    image: swir/swir-perf-kafka-sink:v0.3.2
+    image: swir/swir-perf-kafka-sink:v0.4.0
     environment:
       - bootstrap_servers=kafka:9094
       - sink_consumer_topic=Request2
@@ -54,7 +54,7 @@ services:
   swir-nats-sink:
     networks:
       - swir-net
-    image: swir/swir-perf-nats-sink:v0.3.2
+    image: swir/swir-perf-nats-sink:v0.4.0
     environment:
       - bootstrap_servers=nats://nats:4222
       - subscribe_topic=Request
@@ -65,7 +65,7 @@ services:
   swir-nats-sink2:
     networks:
       - swir-net
-    image: swir/swir-perf-nats-sink:v0.3.2
+    image: swir/swir-perf-nats-sink:v0.4.0
     environment:
       - bootstrap_servers=nats://nats:4222
       - subscribe_topic=Request2
@@ -76,7 +76,7 @@ services:
   swir-java-client:
     networks:
       - swir-net
-    image: swir/swir-perf-java-client:v0.3.2
+    image: swir/swir-perf-java-client:v0.4.0
     environment:
       - sidecar_url=h2://swir:8080/publish
       - bootstrap_servers=kafka:9094
