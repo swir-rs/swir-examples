@@ -63,3 +63,5 @@ docker-compose  -f docker-compose-swir.yaml -p pf up -d
 
 #curl -v -d '{"messages":100, "threads":10, "sidecarUrl":"http://127.0.0.1:8080","producerTopics":["ProduceToKinesis"],"subscriberTopics":["SubscribeToKinesis"],"missedPackets":50}' -H "Content-Type: application/json" -X POST http://127.0.0.1:8090/test
 
+#curl -v -d 'dfdhfjhdjhfjdhjfhjdhjhfjh' -H "Content-Type: application/octet-stream" -H "x-correlation-id: dkfjkdjkdjfk" -H "x-database-name: dfdfdfdfd " -H "x-database-key: dfdhfjdhjfh" -X POST http://127.0.0.1:8080/persistence/store
+

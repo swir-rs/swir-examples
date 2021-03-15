@@ -1,3 +1,6 @@
+repoUri="$1.dkr.ecr.$2.amazonaws.com"
+echo "${repoUri}"
+
 aws ecr delete-repository --repository-name swir/swir-example-si-python-http-server --force
 aws ecr delete-repository --repository-name swir/swir-example-si-python-grpc-client --force
 aws ecr delete-repository --repository-name swir/swir --force

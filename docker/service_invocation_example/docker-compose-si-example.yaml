@@ -17,7 +17,7 @@ services:
   swir-example-logger:
     networks:
       - swir-si
-    image: jaegertracing/all-in-one:1.18
+    image: jaegertracing/all-in-one:1.22
     depends_on:
       - swir-example-si-configurator
 #    command: ["/bin/bash","-c","cp /config/* swir_config/ ; cp /certificates/* certs/"]
