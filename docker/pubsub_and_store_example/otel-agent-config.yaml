@@ -38,3 +38,4 @@ service:
       receivers: [otlp]
       processors: [batch]
       exporters: [otlp,logging]
+      

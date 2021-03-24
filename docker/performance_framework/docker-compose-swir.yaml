@@ -51,7 +51,7 @@ services:
       - "14250"       # Jaeger grpc receiver
       - "14268"       # Jaeger http thrift receiver
       - "55678"       # OpenCensus receiver
-      - "4317:4317"        # OTLP gRPC receiver
+      - "4318:4318"        # OTLP gRPC receiver
       - "9411"        # Zipkin receiver
       - "1777:1777"   # pprof extension
       - "55679:55679" # zpages extension

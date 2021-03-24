@@ -6,9 +6,10 @@ receivers:
 exporters:
   prometheus:
     endpoint: "0.0.0.0:8889"
-    namespace: promexample
+    namespace: pubsub
     const_labels:
-      label1: value1
+      collector: pf
+      type: docker
   logging:
 
 

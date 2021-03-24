@@ -13,11 +13,10 @@ services:
 
   prometheus:
     networks:
-      - swir-net
-    container_name: prometheus
+      - swir-net  
     image: prom/prometheus:latest
     volumes:
-      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
         
