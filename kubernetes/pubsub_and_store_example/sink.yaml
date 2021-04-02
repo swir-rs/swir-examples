@@ -11,7 +11,7 @@ client_config:
 tracing:
   open_telemetry:
     collector_address: "127.0.0.1"
-    collector_port: "6831"
+    collector_port: "4317"
     service_name: sink
 
 

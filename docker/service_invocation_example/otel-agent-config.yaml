@@ -2,21 +2,20 @@ receivers:
   otlp:
     protocols:
       grpc:
-        endpoint: 0.0.0.0:4317
+  opencensus:
+  jaeger:
+    protocols:
+      grpc:
+      thrift_http:
+      thrift_compact:
+  zipkin:
 
-  
 exporters:
+  otlp:
+    endpoint: "otel-collector:4317"
+    insecure: true
   logging:
     loglevel: debug
-  prometheus:
-    endpoint: 0.0.0.0:8889
-    namespace: agent
-    const_labels:
-      collector: pf
-      type: docker
-  jaeger:
-    endpoint: jaeger-all-in-one:14250
-    insecure: true
 
 processors:
   batch:
@@ -32,10 +31,11 @@ service:
   extensions: [health_check, pprof, zpages]
   pipelines:
     traces:
-      receivers: [otlp]
+      receivers: [otlp, opencensus, jaeger, zipkin]
       processors: [batch]
-      exporters: [jaeger,logging]
+      exporters: [otlp,logging]
     metrics:
       receivers: [otlp]
       processors: [batch]
-      exporters: [prometheus,logging]
+      exporters: [otlp,logging]
+      

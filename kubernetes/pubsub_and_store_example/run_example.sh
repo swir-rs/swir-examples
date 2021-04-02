@@ -13,7 +13,7 @@ if ! [ -n "$2" ]; then
     operator_namespace="$deployment_name-op"
 fi
 
-echo "Deployment namespace  $deployment_name operator namespace $operator_namespace"
+echo "Deployment namespace $deployment_name operator namespace $operator_namespace"
 
 cwd=$(pwd)
 cd ..

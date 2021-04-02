@@ -16,34 +16,44 @@ spec:
       containers:
       - name: swir-operator
         image: swir/swir-operator:v0.4.0
+        imagePullPolicy: Always
         env:
           - name: SWIR_SIDECAR_IMAGE_VERSION
             value: swir/swir:v0.4.0
+            
         volumeMounts:
           - name: config-volume
             mountPath: /configs/namespace
           - name: certs-volume
             mountPath: /certs/namespace
-      volumes: 
-        - name: config-volume
-          configMap:
-            name: swir-operator-config
-            items:
-            - key: processor_1.yaml
-              path: processor1-config.yaml
-            - key: processor_2.yaml
-              path: processor2-config.yaml
-            - key: processor_3.yaml
-              path: processor3-config.yaml
-            - key: source.yaml
-              path: source-config.yaml
-            - key: sink.yaml
-              path: sink-config.yaml
-        - name: certs-volume
-          configMap:
-            name: swir-operator-certs
-            items:
-            - key: dummy
-              path: dummy
+          - name: otel-volume
+            mountPath: /otel/namespace                      
+      volumes:
+      - name: config-volume
+        configMap:
+          name: swir-operator-config
+          items:
+          - key: processor_1.yaml
+            path: processor1-config.yaml
+          - key: processor_2.yaml
+            path: processor2-config.yaml
+          - key: processor_3.yaml
+            path: processor3-config.yaml
+          - key: source.yaml
+            path: source-config.yaml
+          - key: sink.yaml
+            path: sink-config.yaml
+      - name: certs-volume
+        configMap:
+          name: swir-operator-certs
+          items:
+          - key: dummy
+            path: dummy
+      - name: otel-volume
+        configMap:
+          name: swir-operator-otel
+          items:
+          - key: otel-agent-config.yaml
+            path: otel-agent-config.yaml
 
         

@@ -2,18 +2,17 @@ receivers:
   otlp:
     protocols:
       grpc:
-        endpoint: 0.0.0.0:4317
 
-  
 exporters:
-  logging:
-    loglevel: debug
   prometheus:
-    endpoint: 0.0.0.0:8889
-    namespace: agent
+    endpoint: "0.0.0.0:8889"
+    namespace: si
     const_labels:
       collector: pf
       type: docker
+  logging:
+
+
   jaeger:
     endpoint: jaeger-all-in-one:14250
     insecure: true
@@ -22,20 +21,20 @@ processors:
   batch:
 
 extensions:
+  health_check:
   pprof:
-    endpoint: :1777
+    endpoint: :1888
   zpages:
     endpoint: :55679
-  health_check:
 
 service:
-  extensions: [health_check, pprof, zpages]
+  extensions: [pprof, zpages, health_check]
   pipelines:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [jaeger,logging]
+      exporters: [jaeger]
     metrics:
       receivers: [otlp]
       processors: [batch]
-      exporters: [prometheus,logging]
+      exporters: [prometheus]

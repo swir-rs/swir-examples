@@ -3,21 +3,15 @@ receivers:
     protocols:
       grpc:
         endpoint: 0.0.0.0:4317
-
   
 exporters:
   logging:
     loglevel: debug
-  prometheus:
-    endpoint: 0.0.0.0:8889
-    namespace: agent
-    const_labels:
-      collector: pf
-      type: docker
-  jaeger:
-    endpoint: jaeger-all-in-one:14250
+    
+  otlp:
+    endpoint: "otel-collector.otel.monitoring:4317"
     insecure: true
-
+  
 processors:
   batch:
 
@@ -34,8 +28,8 @@ service:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [jaeger,logging]
+      exporters: [otlp]
     metrics:
       receivers: [otlp]
       processors: [batch]
-      exporters: [prometheus,logging]
+      exporters: [otlp]

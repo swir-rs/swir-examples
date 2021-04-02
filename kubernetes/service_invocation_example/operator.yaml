@@ -16,6 +16,7 @@ spec:
       containers:
       - name: swir-operator
         image: swir/swir-operator:v0.4.0
+        imagePullPolicy: Always
         env:
           - name: SWIR_SIDECAR_IMAGE_VERSION
             value: swir/swir:v0.4.0
@@ -23,7 +24,9 @@ spec:
           - name: config-volume
             mountPath: /configs/namespace
           - name: certs-volume
-            mountPath: /certs/namespace          
+            mountPath: /certs/namespace
+          - name: otel-volume
+            mountPath: /otel/namespace          
       volumes: 
         - name: config-volume
           configMap:
@@ -49,5 +52,11 @@ spec:
               path: server.internal_grpc.swir.rs.cert.pem
             - key: server.internal_grpc.swir.rs.key.pem
               path: server.internal_grpc.swir.rs.key.pem
+        - name: otel-volume
+          configMap:
+            name: swir-operator-otel
+            items:
+            - key: otel-agent-config.yaml
+              path: otel-agent-config.yaml
 
         
