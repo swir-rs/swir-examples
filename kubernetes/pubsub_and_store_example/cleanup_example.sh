@@ -14,7 +14,7 @@ if ! [ -n "$2" ]; then
     operator_namespace="$deployment_name-op"
 fi
 
-echo "Deployment namespace  $deployment_name operator namespace $operator_namespace"
+echo "Deployment namespace $deployment_name operator namespace $operator_namespace"
 
 
 ./undeploy_example.sh $deployment_name

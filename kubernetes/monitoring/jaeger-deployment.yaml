@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jaeger
+  namespace: monitoring
+spec:
+  selector:
+    app: jaeger-server
+  type: NodePort  
+  ports:
+    - port: 16686
+      nodePort: 30001
+
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jaeger-dep
+  namespace: monitoring
+  labels:
+    app: jaeger-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jaeger-server
+  template:
+    metadata:
+      labels:
+        app: jaeger-server
+    spec:
+      hostname: jaeger-ui
+      subdomain: jaeger
+      containers:
+        - name: jaeger-server
+          image: jaegertracing/all-in-one
+          
+          ports:
+            - containerPort: 14250
+            - containerPort: 16686
+                              

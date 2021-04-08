@@ -8,6 +8,7 @@ kubectl delete namespace redis
 kubectl delete namespace nats
 
 ./swir_operator_remove.sh $2
-../jaeger_uninstall.sh $1
+../monitoring/monitoring_cleanup.sh
+#../jaeger_uninstall.sh $1
 kubectl delete namespace $1
 

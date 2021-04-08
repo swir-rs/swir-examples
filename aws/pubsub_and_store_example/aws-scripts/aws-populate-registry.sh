@@ -3,28 +3,28 @@ echo "${repoUri}"
 aws ecr get-login-password --region $2 | docker -v login --username AWS --password-stdin "${repoUri}"
 
 aws ecr create-repository --repository-name swir/swir-example-pubsub-java-source
-docker tag swir/swir-example-pubsub-java-source:v0.3.2 ${repoUri}/swir/swir-example-pubsub-java-source:v0.3.2
-docker push ${repoUri}/swir/swir-example-pubsub-java-source
+docker tag swir/swir-example-pubsub-java-source:v0.4.0 ${repoUri}/swir/swir-example-pubsub-java-source:v0.4.0
+docker push ${repoUri}/swir/swir-example-pubsub-java-source:v0.4.0
 
 aws ecr create-repository --repository-name swir/swir-example-pubsub-java-processor
-docker tag swir/swir-example-pubsub-java-processor:v0.3.2 ${repoUri}/swir/swir-example-pubsub-java-processor:v0.3.2
-docker push ${repoUri}/swir/swir-example-pubsub-java-processor
+docker tag swir/swir-example-pubsub-java-processor:v0.4.0 ${repoUri}/swir/swir-example-pubsub-java-processor:v0.4.0
+docker push ${repoUri}/swir/swir-example-pubsub-java-processor:v0.4.0
 
 aws ecr create-repository --repository-name swir/swir-example-pubsub-python-sink
-docker tag swir/swir-example-pubsub-python-sink:v0.3.2 ${repoUri}/swir/swir-example-pubsub-python-sink:v0.3.2
-docker push ${repoUri}/swir/swir-example-pubsub-python-sink
+docker tag swir/swir-example-pubsub-python-sink:v0.4.0 ${repoUri}/swir/swir-example-pubsub-python-sink:v0.4.0
+docker push ${repoUri}/swir/swir-example-pubsub-python-sink:v0.4.0
 
 aws ecr create-repository --repository-name swir/swir-example-pubsub-python-processor
-docker tag swir/swir-example-pubsub-python-processor:v0.3.2 ${repoUri}/swir/swir-example-pubsub-python-processor:v0.3.2
-docker push ${repoUri}/swir/swir-example-pubsub-python-processor
+docker tag swir/swir-example-pubsub-python-processor:v0.4.0 ${repoUri}/swir/swir-example-pubsub-python-processor:v0.4.0
+docker push ${repoUri}/swir/swir-example-pubsub-python-processor:v0.4.0
 
 aws ecr create-repository --repository-name swir/swir
-docker tag swir/swir:v0.3.2 ${repoUri}/swir/swir:v0.3.2
-docker push ${repoUri}/swir/swir:v0.3.2
+docker tag swir/swir:v0.4.0 ${repoUri}/swir/swir:v0.4.0
+docker push ${repoUri}/swir/swir:v0.4.0
 
 aws ecr create-repository --repository-name swir/swir-example-pubsub-aws-configurator
-docker tag swir/swir-example-pubsub-aws-configurator:v0.3.2 ${repoUri}/swir/swir-example-pubsub-aws-configurator:v0.3.2
-docker push ${repoUri}/swir/swir-example-pubsub-aws-configurator
+docker tag swir/swir-example-pubsub-aws-configurator:v0.4.0 ${repoUri}/swir/swir-example-pubsub-aws-configurator:v0.4.0
+docker push ${repoUri}/swir/swir-example-pubsub-aws-configurator:v0.4.0
 
 
 #docker -v logout "${repoUri}"
