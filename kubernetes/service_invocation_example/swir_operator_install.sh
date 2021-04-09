@@ -1,10 +1,22 @@
 #!/bin/bash
+working_dir=$(pwd)
 kubectl create ns $1
 kubectl -n $1 delete configmap swir-operator-config
 kubectl -n $1 create configmap swir-operator-config --from-file=./books.yaml --from-file=./helpdesk.yaml --from-file=./magazines.yaml 
 
 
-cert_location="../../docker/service_invocation_example/swir-configurator/certificates"
+cert_location="certificates"
+mkdir -p $cert_location
+cd $cert_location
+wget https://raw.githubusercontent.com/swir-rs/swir-demo-clients/main/swir-si-configurator/certificates/api.swir.rs.cert.pem
+wget https://raw.githubusercontent.com/swir-rs/swir-demo-clients/main/swir-si-configurator/certificates/ca-chain.cert.pem
+wget https://raw.githubusercontent.com/swir-rs/swir-demo-clients/main/swir-si-configurator/certificates/client.internal_grpc.swir.rs.cert.pem
+wget https://raw.githubusercontent.com/swir-rs/swir-demo-clients/main/swir-si-configurator/certificates/client.internal_grpc.swir.rs.key.pem
+wget https://raw.githubusercontent.com/swir-rs/swir-demo-clients/main/swir-si-configurator/certificates/server.internal_grpc.swir.rs.cert.pem
+wget https://raw.githubusercontent.com/swir-rs/swir-demo-clients/main/swir-si-configurator/certificates/server.internal_grpc.swir.rs.key.pem
+
+cd $working_dir
+
 kubectl -n $1 delete configmap swir-operator-certs
 kubectl -n $1 create configmap swir-operator-certs --from-file=$cert_location/ca-chain.cert.pem --from-file=$cert_location/client.internal_grpc.swir.rs.cert.pem --from-file=$cert_location/client.internal_grpc.swir.rs.key.pem --from-file=$cert_location/server.internal_grpc.swir.rs.cert.pem --from-file=$cert_location/server.internal_grpc.swir.rs.key.pem
 
